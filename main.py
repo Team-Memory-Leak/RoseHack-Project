@@ -1,7 +1,14 @@
 import pygame
+from pygame.locals import *
 import os
 
+# Initialize Pygame
 pygame.init()
+pygame.freetype.init()
+
+pygame.display.set_caption("RoseHack Project")
+
+gameFont = pygame.freetype.Font("fonts/SourGummy.ttf", 24)
 
 # Initial window size
 width = 1600
@@ -55,4 +62,5 @@ while running:
     pygame.display.flip()
     clock.tick(60)
 
+pygame.freetype.quit()
 pygame.quit()
