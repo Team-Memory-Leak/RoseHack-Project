@@ -1,66 +1,40 @@
-import pygame
-from pygame.locals import *
-import os
+import random
 
-# Initialize Pygame
-pygame.init()
-pygame.freetype.init()
+englishDictionary = open("diction/EnglishDictionary", "r")
+imageHash = open("diction/ImageHash", "r")
+japaneseDictionary = open("diction/JapaneseDictionary", "r")
 
-pygame.display.set_caption("RoseHack Project")
+englishDictionary = englishDictionary.read().split("\n")
+imageHash = imageHash.read().split("\n")
+japaneseDictionary = japaneseDictionary.read().split("\n")
 
-gameFont = pygame.freetype.Font("fonts/SourGummy.ttf", 24)
+count = 0
+historyIndex = -1
 
-# Initial window size
-width = 1600
-height = 1150
+while count != 2:
+  correlatedIndex = random.randint(0, len(englishDictionary))
+  while correlatedIndex == historyIndex:
+    correlatedIndex = random.randint(0, len(englishDictionary))
+  print(imageHash[correlatedIndex])
+  print(japaneseDictionary[correlatedIndex])
 
-# Create a resizable display
-screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-pygame.display.set_caption("RoseHack Project")
-clock = pygame.time.Clock()
-running = True
+  option1 = random.randint(0, len(englishDictionary) - 1)
+  option2 = random.randint(0, len(englishDictionary) - 1)
 
-# Load the image once
-background = pygame.image.load('Images/Rosehack Bg Project.png')
+  while option1 == correlatedIndex:
+    option1 = random.randint(0, len(englishDictionary) - 1)
+  while option2 == correlatedIndex or option2 == option1:
+    option2 = random.randint(0, len(englishDictionary) - 1)
 
-# Scale the image initially
-background = pygame.transform.scale(background, (width, height))
+  print("Which of the following is the correct translation of the word above?")
 
-def defaultButton(width, height, x, y, text, color, hover_color, action=None):
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
+  possibleAnswers = [englishDictionary[correlatedIndex],englishDictionary[option1], englishDictionary[option2]]
+  random.shuffle(possibleAnswers)
 
-    if x + width > mouse[0] > x and y + height > mouse[1] > y:
-        pygame.draw.rect(screen, hover_color, (x, y, width, height))
-        if click[0] == 1 and action is not None:
-            action()
-    else:
-        pygame.draw.rect(screen, color, (x, y, width, height))
+  print(possibleAnswers[0])
+  print(possibleAnswers[1])
+  print(possibleAnswers[2])
 
-    font = pygame.font.Font(None, 36)
-    text_surface = font.render(text, True, (0, 0, 0))
-    text_rect = text_surface.get_rect(center=(x + width / 2, y + height / 2))
-    screen.blit(text_surface, text_rect)
-
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-        # Handle window resize event
-        if event.type == pygame.VIDEORESIZE:
-            width, height = event.size  # Update the dimensions
-            screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-            background = pygame.transform.scale(background, (width, height))  # Rescale the background
-
-    # Draw the image onto the screen
-    screen.blit(background, (0, 0))
-
-    # Draw the button
-    defaultButton(200, 50, 100, 100, "Start", (0, 255, 0), (0, 200, 0))
-
-    pygame.display.flip()
-    clock.tick(60)
-
-pygame.freetype.quit()
-pygame.quit()
+  count += 1
+  historyIndex = correlatedIndex
+  
