@@ -21,9 +21,9 @@ while count != 2:
   option1 = random.randint(0, len(englishDictionary) - 1)
   option2 = random.randint(0, len(englishDictionary) - 1)
 
-  while option1 == correlatedIndex:
+  while option1 == correlatedIndex or option1 == historyIndex:
     option1 = random.randint(0, len(englishDictionary) - 1)
-  while option2 == correlatedIndex or option2 == option1:
+  while option2 == correlatedIndex or option2 == option1 or option2 == historyIndex:
     option2 = random.randint(0, len(englishDictionary) - 1)
 
   print("Which of the following is the correct translation of the word above?")
