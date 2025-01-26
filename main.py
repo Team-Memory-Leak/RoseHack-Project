@@ -1,19 +1,31 @@
 import pygame
-import os
+import random
 
-# Initialize Pygame
-pygame.init()
-pygame.freetype.init()
+englishDictionary = open("diction/EnglishDictionary", "r")
+imageHash = open("diction/ImageHash", "r")
+japaneseDictionary = open("diction/JapaneseDictionary", "r")
 
-pygame.display.set_caption("RoseHack Project")
+englishDictionary = englishDictionary.read().split("\n")
+imageHash = imageHash.read().split("\n")
+japaneseDictionary = japaneseDictionary.read().split("\n")
+
+count = 0
+historyIndex = -1
 
 gameFont = pygame.freetype.Font("fonts/SourGummy.ttf", 24)
 gameFont2 = pygame.freetype.Font("fonts/KiwiMaru.ttf", 40)
 
-# Initial window size
-width = 1600
-height = 1150
 
+while count != 2:
+  correlatedIndex = random.randint(0, len(englishDictionary))
+  while correlatedIndex == historyIndex:
+    correlatedIndex = random.randint(0, len(englishDictionary))
+  print(imageHash[correlatedIndex])
+  print(japaneseDictionary[correlatedIndex])
+
+  option1 = random.randint(0, len(englishDictionary) - 1)
+  option2 = random.randint(0, len(englishDictionary) - 1)
+  
 # Create a resizable display
 screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
 pygame.display.set_caption("RoseHack Project")
@@ -22,11 +34,23 @@ running = True
 score = 0
 button_visible = True
 
-# Load the image once
-background = pygame.image.load('Images/Rosehack Bg Project.png')
 
-# Scale the image initially
-background = pygame.transform.scale(background, (width, height))
+  while option1 == correlatedIndex or option1 == historyIndex:
+    option1 = random.randint(0, len(englishDictionary) - 1)
+  while option2 == correlatedIndex or option2 == option1 or option2 == historyIndex:
+    option2 = random.randint(0, len(englishDictionary) - 1)
+
+  print("Which of the following is the correct translation of the word above?")
+
+  possibleAnswers = [englishDictionary[correlatedIndex],englishDictionary[option1], englishDictionary[option2]]
+  random.shuffle(possibleAnswers)
+
+  print(possibleAnswers[0])
+  print(possibleAnswers[1])
+  print(possibleAnswers[2])
+
+  count += 1
+  historyIndex = correlatedIndex
 
 
 
