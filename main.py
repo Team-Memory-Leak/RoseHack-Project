@@ -120,10 +120,10 @@ while running:
 
             #pygame.time.wait(2000)
 
-        defaultButton(300, 150, (width - 500)//2, (height + 500)//2, japaneseDictionary[correlatedIndex], ("white"), (0, 200, 0), gameFont, 40) #Bottom Right
-        defaultButton(300, 150, (width - 1400)//2, (height + 500)//2, "Default3", ("white"), (0, 200, 0), gameFont, 40) #Bottom Left
-        defaultButton(300, 150, (width - 500)//2, (height - 150)//2, "Default2", ("white"), (0, 200, 0), gameFont, 40) #Top Right
-        defaultButton(300, 150, (width - 1400)//2, (height - 150)//2, "Default1", ("white"), (0, 200, 0), gameFont, 40) #Bottom Left
+        defaultButton(400, 150, (width - 600)//2, (height + 500)//2, englishDictionary[0], ("white"), (0, 200, 0), gameFont, 40) #Bottom Right
+        defaultButton(400, 150, (width - 1520)//2, (height + 500)//2, "Default3", ("white"), (0, 200, 0), gameFont, 40) #Bottom Left
+        defaultButton(400, 150, (width - 600)//2, (height - 150)//2, "Default2", ("white"), (0, 200, 0), gameFont, 40) #Top Right
+        defaultButton(400, 150, (width - 1520)//2, (height - 150)//2, "Default1", ("white"), (0, 200, 0), gameFont, 40) #Bottom Left
         
         defaultButton(300, 100, (width - 950)//2, (height - 650)//2, "Hint?", ("white"), (0, 200, 0), gameFont, 40)#Hint button
         defaultDisplay(700, 100, (width - 1350)//2, (height - 400)//2, "Which is the correct translation of the word on the right?", ("white"), gameFont, 25, "black")#Hint button
@@ -135,7 +135,7 @@ while running:
 
         defaultDisplay(550, 100, (width +350)//2, height - 1050 , "Hiragana", ("white"), gameFont, 40, "black")#High Score Button
         defaultDisplay(550, 300, (width +350)//2, height - 940 , "Japanese", ("white"), gameFont, 80, "black")#High Score Button
-
+        
     pygame.display.flip()
     clock.tick(60)
  
